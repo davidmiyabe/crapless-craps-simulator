@@ -1,0 +1,472 @@
+/* ===============================
+   Base Styling & Global Settings
+   =============================== */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Orbitron', sans-serif;
+  color: #e0e0e0;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   Main Container & Layout
+   =============================== */
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+.board {
+  flex: 3;
+}
+.side-panel {
+  flex: 1;
+  background: rgba(0,0,0,0.8);
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* ===============================
+   Header Styling
+   =============================== */
+.table-header h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 0;
+  color: #0ff;
+  text-shadow: 0 0 8px #68DBDD, 0 0 16px #68DBDD;
+}
+.table-header h2 {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0;
+  color: #f0f;
+  text-shadow: 0 0 6px #f0f, 0 0 10px #f0f;
+}
+
+/* ===============================
+   Craps Table Grid (Desktop)
+   =============================== */
+.craps-table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Force 5 columns for desktop */
+  gap: 8px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+.number-box {
+  background: #013220;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px #68DBDD, 0 0 20px #68DBDD;
+  padding: 4px;
+  transition: transform 0.2s ease;
+  /* Use aspect-ratio to force a square */
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.number-box:hover {
+  transform: scale(1.05);
+}
+.num-header {
+  font-size: 1.3em;
+  font-weight: 700;
+  text-shadow: 0 0 6px #0ff;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.number-box.point-highlight {
+  border: 3px solid gold;
+  box-shadow: 0 0 12px gold;
+}
+
+/* ===============================
+   Bets Inside Number Boxes
+   =============================== */
+   .bets-row {
+     display: flex;
+     justify-content: center;
+     gap: 4px;
+     margin: 2px 0;
+   }
+
+.bet-zone {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #0ff;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+  margin: 1px;
+  height: 35px;
+  font-size: 0.75em;
+  text-shadow: 0 0 4px #0ff;
+  overflow: hidden;
+}
+
+/* ===============================
+   Chip Display for Bets
+   =============================== */
+.chip-display {
+  display: inline-block;
+  background: linear-gradient(135deg, #00d4ff, #0077ff);
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 10%;
+  padding: 4px 0;
+  font-weight: bold;
+  font-size: 0.9em;
+  width: 40px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,212,255,0.7), 0 0 16px rgba(0,117,255,0.5);
+  text-shadow: 0 0 6px #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.chip-display:hover {
+  transform: perspective(500px) rotateX(0deg);
+  box-shadow: 0 0 12px rgba(0,212,255,0.8), 0 0 24px rgba(0,117,255,0.7);
+}
+.empty-label {
+  font-size: 0.7em;
+  color: #ccc;
+  padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===============================
+   Main Bets Area (Below Numbers)
+   =============================== */
+.main-bets {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bet-row {
+  display: flex;
+  gap: 10px;
+}
+.top-row .bet-section {
+  flex: 1;
+  height: 80px;
+  background: rgba(2,100,64,0.85);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #0ff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.top-row .bet-section:hover {
+  transform: scale(1.05);
+}
+.bottom-row .pass-line {
+  flex: 8;
+  height: 80px;
+  background: rgba(2,100,64,0.85);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #0ff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.bottom-row .pass-line:hover {
+  transform: scale(1.05);
+}
+.bottom-row .pass-line-odds {
+  flex: 2;
+  height: 80px;
+  background: rgba(2,100,64,0.85);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #0ff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.bottom-row .pass-line-odds:hover {
+  transform: scale(1.05);
+}
+
+/* Bet Info: Label (left) & Chip Area (fixed width, centered) */
+.bet-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  overflow: hidden;
+}
+.bet-label {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 6px #0ff;
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chip-area {
+  width: 60px;
+  text-align: center;
+}
+
+/* ===============================
+   Chip Tray (Bet Amounts Selector)
+   =============================== */
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+}
+.chip {
+  font-family: 'Orbitron', sans-serif;
+  width: 55px;
+  height: 35px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.85em;
+  cursor: pointer;
+  border: 3px solid #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #ff0000, #ffb300);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+.chip:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.7);
+}
+.chip.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(255,255,255,0.8);
+}
+/* Specific Chip Colors */
+.chip-1 {
+  background: linear-gradient(135deg, #F5F5F5, #D8D8D8);
+}
+.chip-5 {
+  background: linear-gradient(135deg, #FF0460, #FF00EE);
+}
+.chip-10 {
+  background: linear-gradient(135deg, #0471FF, #01FFFB);
+}
+.chip-25 {
+  background: linear-gradient(135deg, #00CB25, #A2FF00);
+}
+.chip-50 {
+  background: linear-gradient(135deg, #FF8000, #FFFF00);
+}
+.chip-100 {
+  background: linear-gradient(135deg, #454344, #D0D0D0);
+}
+.bet-btn {
+  background: #013220;
+  border: 2px solid #0ff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: #0ff;
+  cursor: pointer;
+  text-shadow: 0 0 6px #0ff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.bet-btn:hover {
+  background: #026440;
+  transform: scale(1.05);
+}
+
+/* ===============================
+   Side Panel (Dice, Controls, Bankroll, History)
+   =============================== */
+.dice-display {
+  background: #013220;
+  border: 2px solid #0ff;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+.dice-display:hover {
+  transform: scale(1.05);
+}
+.dice-face {
+  font-size: 3em;
+  font-weight: bold;
+  color: #D8FEFF;
+  background-color: rgba(177,254,255,0.3);
+  text-shadow: 0 0 8px #0ff;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  margin: 10px;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.control-btn {
+  background: #013220;
+  flex: 1;
+  border: 2px solid #0ff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #0ff;
+  cursor: pointer;
+  text-shadow: 0 0 6px #0ff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.control-btn:hover {
+  background: #026440;
+  transform: scale(1.05);
+}
+.roll-btn {
+  background: #0ff;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 10px #0ff;
+}
+.bankroll-display {
+  padding-top: 20px;
+  font-size: 1.1em;
+  text-shadow: 0 0 6px #f0f, 0 0 10px #f0f;
+}
+.roll-history {
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 0.75em;
+  color: #0ff;
+}
+.roll-history h3 {
+  margin-top: 0;
+}
+
+/* ===============================
+   Mobile-Friendly Layout (Vertical)
+   =============================== */
+@media screen and (max-width: 600px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  .board, .side-panel {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 10px auto;
+  }
+  /* Use 3 columns for the numbers grid on mobile */
+  .craps-table {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 600px;
+    margin: 10px auto;
+  }
+  .number-box {
+    aspect-ratio: 1 / 1;
+    padding: 3px;
+  }
+  .num-header {
+    font-size: 0.8em;
+  }
+  .bet-zone {
+    font-size: 0.6em;
+    padding: 2px;
+  }
+  .main-bets {
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+  }
+  .bet-section {
+    height: 60px;
+  }
+  .bet-info {
+    padding: 5px;
+  }
+  .bet-label {
+    font-size: 1em;
+  }
+  .chip-area {
+    width: 45px;
+  }
+  .chip-container {
+    gap: 8px;
+    max-width: 600px;
+  }
+  .chip {
+    width: 45px;
+    height: 30px;
+    font-size: 0.7em;
+  }
+  .dice-face {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5em;
+    margin: 5px;
+  }
+  .control-btn {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+  .table-header h1 {
+    font-size: 1.8em;
+  }
+  .table-header h2 {
+    font-size: 0.9em;
+  }
+  .roll-history {
+    max-height: 140px;
+    font-size: 0.7em;
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Crapless Craps</title>
+  <!-- Use Orbitron font for a futuristic vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Link to your external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Left Column: Board Area -->
+    <div class="board">
+      <div class="table-header">
+        <h1>CRAPLESS CRAPS</h1>
+        <h2>May the Odds be Ever in Your Favor</h2>
+      </div>
+      <!-- Number Grid -->
+      <div class="craps-table" id="numberBets">
+        <!-- Number boxes are injected via JavaScript -->
+      </div>
+      <!-- Main Bets Area -->
+      <div class="main-bets">
+        <!-- Top Row: Field and Come (equal width) -->
+        <div class="bet-row top-row">
+          <div class="bet-section field-bet" onclick="placeFieldBet()">
+            <div class="bet-info">
+              <div class="bet-label">Field_2•3•4•9•10•11•12</div>
+              <div class="chip-area" id="fieldBetChip"></div>
+            </div>
+          </div>
+          <div class="bet-section come-bet" onclick="placeComeBet()">
+            <div class="bet-info">
+              <div class="bet-label">Come</div>
+              <div class="chip-area" id="comeBetChip"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Row: Pass Line (80%) and Pass Line Odds (20%) -->
+        <div class="bet-row bottom-row">
+          <div class="bet-section pass-line" onclick="placeBet('pass')">
+            <div class="bet-info">
+              <div class="bet-label">Pass Line</div>
+              <div class="chip-area" id="passLineChip"></div>
+            </div>
+          </div>
+          <div class="bet-section pass-line-odds" onclick="placePassLineOddsBet()">
+            <div class="bet-info">
+              <div class="bet-label">Odds</div>
+              <div class="chip-area" id="passLineOddsChip"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bet Amounts Tray (Chip Selector) -->
+      <div class="chip-container">
+        <button onclick="undo()" class="bet-btn">Undo</button>
+        <button class="chip chip-1" onclick="selectChip(1)">$1</button>
+        <button class="chip chip-5" onclick="selectChip(5)">$5</button>
+        <button class="chip chip-10 selected" onclick="selectChip(10)">$10</button>
+        <button class="chip chip-25" onclick="selectChip(25)">$25</button>
+        <button class="chip chip-50" onclick="selectChip(50)">$50</button>
+        <button class="chip chip-100" onclick="selectChip(100)">$100</button>
+        <button onclick="placeAcrossBet()" class="bet-btn">Bet Across</button>
+      </div>
+    </div>
+
+    <!-- Right Column: Side Panel -->
+    <div class="side-panel">
+      <div style="text-align: center; margin-bottom: 10px;">
+  <a href="https://buymeacoffee.com/craplesscraps" target="_blank" style="text-decoration: none; font-size: 16px; color: #FFDD00; font-weight: bold;">
+    🍺 Buy Me a Beer
+  </a>
+</div>
+      <!-- Dice Display -->
+      <div class="dice-display" id="diceDisplay" onclick="rollDice()">
+        <div class="dice-face" id="dice1">?</div>
+        <div class="dice-face" id="dice2">?</div>
+      </div>
+      <!-- Controls -->
+      <div class="controls">
+        <!-- <button onclick="rollDice()" class="control-btn roll-btn">ROLL</button> -->
+        <button onclick="clearBets()" class="control-btn">Clear Bets</button>
+        <button onclick="resetGame()" class="control-btn">Reset Game</button>
+        <button onclick="toggleMute()" class="control-btn">Mute/Unmute</button>
+      </div>
+      <!-- Bankroll Display -->
+      <div class="bankroll-display">
+        Bankroll: $<span id="bankroll">500</span>
+      </div>
+      <!-- Roll History -->
+      <div id="rollHistory" class="roll-history">
+        <h3>^ Roll History ^</h3>
+        <!-- Roll details added dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Link to your external JavaScript file -->
+  <script src="script.js"></script>
+  <!-- Sounds -->
+  <audio id="diceSound" src="assets/diceroll.mp3"></audio>
+  <audio id="chipSound" src="assets/chip.mp3"></audio>
+  <audio id="winSound" src="assets/win.mp3"></audio>
+  <audio id="loseSound" src="assets/loss.mp3"></audio>
+</body>
+</html>
